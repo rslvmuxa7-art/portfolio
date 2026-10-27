@@ -48,7 +48,7 @@ export default function Hero() {
             className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-cyan-500/40 bg-slate-900/60 hover:bg-cyan-500/20 transition-all text-cyan-400 hover:text-cyan-300 backdrop-blur-md shadow-lg"
           >
             <MapPin className="w-4 h-4 text-cyan-400 group-hover:scale-110 transition-transform animate-pulse" />
-            <span className="text-sm font-medium">Farg'ona, Buvayda</span>
+            <span className="text-sm font-medium">Farg&apos;ona, Buvayda</span>
           </a>
 
         </div>

@@ -8,14 +8,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammadqodir | Portfolio",
-  description: "Modern portfolio website for Muhammadqodir with interactive background, project showcase, skills, and Telegram contact form.",
+  title: "Muhammadqodir Rasuljonov | Portfolio",
+  description: "Kreativ, zamonaviy va responsiv frontend portfolio. Ishlayotgan loyihalar, ko‘nikmalar va aloqa ma’lumotlari.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
-      <body className="min-h-full bg-[#050816] text-slate-100">{children}</body>
+    <html lang="uz" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
+      <body className="min-h-full bg-[var(--page-bg)] text-[var(--foreground)]">{children}</body>
     </html>
   );
 }

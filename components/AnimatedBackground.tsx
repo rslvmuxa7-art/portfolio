@@ -15,11 +15,16 @@ export default function AnimatedBackground() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      return undefined;
+    }
+
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return undefined;
 
     const context = canvas.getContext("2d");
-    if (!context) return;
+    if (!context) return undefined;
 
     const pointer = {
       x: 0,
@@ -52,13 +57,13 @@ export default function AnimatedBackground() {
       }
     };
 
+    let frameId = 0;
     const animate = () => {
       const rect = canvas.getBoundingClientRect();
       const width = rect.width;
       const height = rect.height;
 
       context.clearRect(0, 0, width, height);
-
       context.fillStyle = "rgba(5, 8, 22, 0.18)";
       context.fillRect(0, 0, width, height);
 
@@ -114,7 +119,7 @@ export default function AnimatedBackground() {
       }
       context.globalAlpha = 1;
 
-      requestAnimationFrame(animate);
+      frameId = requestAnimationFrame(animate);
     };
 
     const moveHandler = (event: PointerEvent) => {
@@ -131,12 +136,12 @@ export default function AnimatedBackground() {
     canvas.addEventListener("pointermove", moveHandler);
     canvas.addEventListener("pointerleave", leaveHandler);
     setup();
-    const frame = requestAnimationFrame(animate);
+    frameId = requestAnimationFrame(animate);
 
     window.addEventListener("resize", setup);
 
     return () => {
-      cancelAnimationFrame(frame);
+      cancelAnimationFrame(frameId);
       canvas.removeEventListener("pointermove", moveHandler);
       canvas.removeEventListener("pointerleave", leaveHandler);
       window.removeEventListener("resize", setup);
